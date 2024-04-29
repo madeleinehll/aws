@@ -53,10 +53,10 @@ async function showStations(url) {
             layer.bindPopup(`
        <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
        <ul>
-       <li> ${feature.properties.LT|| "keine Angabe"} 
-       <li> ${feature.properties.RH || "keine Angabe"} 
-       <li> ${feature.properties.WG || "keine Angabe"}
-       <li> ${feature.properties.HS|| "keine Angabe"} 
+       <li> Lufttemperatur (°C): ${feature.properties.LT|| "-"} 
+       <li> Relative Luftfeuchte (%): ${feature.properties.RH || "-"} 
+       <li> Windgeschwindigkeit (km/h): ${feature.properties.WG || "-"}
+       <li> Schneehöhe (cm):${feature.properties.HS|| "-"} 
        </ul>
        ${feature.properties.date}
         `);
