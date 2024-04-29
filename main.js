@@ -51,7 +51,7 @@ async function showStations(url) {
     },
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
-       <h4>${feature.properties.name} (${feature.geometry.coordinates[3]} m ü. NN)</h4>
+       <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
        <ul>
        <li> ${feature.properties.LT|| "keine Angabe"} 
        <li> ${feature.properties.RH || "keine Angabe"} 
