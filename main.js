@@ -41,14 +41,15 @@ async function showStations(url) {
 
     // Wetterstationen mit Icons und Popup 
     L.geoJSON(geojson, {
-        style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 1,
-                opacity: 0.4,
-                fillOpacity: 0.1,
-            };
-        },
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: `icons/bus_${feature.properties.LINE_ID}.png`,
+              iconAnchor: [16, 37],
+              popupAnchor: [0, -37],
+            }),
+        });
+    },
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
        <h4>${feature.properties.name} (${feature.properties.RH[2]} m ü. NN)</h4>
