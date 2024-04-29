@@ -44,7 +44,7 @@ async function showStations(url) {
         pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {
             icon: L.icon({
-              iconUrl: `icons/bus_${feature.properties.LINE_ID}.png`,
+              iconUrl: `icons/wifi.png`,
               iconAnchor: [16, 37],
               popupAnchor: [0, -37],
             }),
