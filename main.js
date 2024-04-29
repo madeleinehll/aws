@@ -38,7 +38,6 @@ L.control.scale({
 async function showStations(url) {
     let response = await fetch(url);
     let geojson = await response.json();
-
     // Wetterstationen mit Icons und Popup 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
@@ -62,32 +61,7 @@ async function showStations(url) {
        ${feature.properties.date}
         `);
         }
-}).addTo(themaLayer.zones);
+}).addTo(themaLayer.stations);
 
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
-
-async function loadZones(url) {
-    console.log("Loading", url);
-    let response = await fetch(url);
-    let geojson = await response.json();
-    L.geoJSON(geojson, {
-        style: function (feature) {
-            return {
-                color: "#F012BE",
-                weight: 1,
-                opacity: 0.4,
-                fillOpacity: 0.1,
-            };
-        },
-        onEachFeature: function (feature, layer) {
-            console.log(feature);
-            console.log(`${feature.properties.ADRESSE}`);
-            layer.bindPopup(`
-       <h4> Fußgängerzone ${feature.properties.ADRESSE} </h4>
-       <i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM || "dauerhaft"} <br>
-       <i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT || "ohne Ausnahme"}
-        `);
-        }
-    }).addTo(themaLayer.zones);
-}
