@@ -40,15 +40,16 @@ async function showStations(url) {
     let geojson = await response.json();
 
     // Wetterstationen mit Icons und Popups
-    console.log(geojson),
+    console.log(geojson);
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
-       <h4>${feature.properties.name} (${feature.properties.RH})</h4>
+       <h4>${feature.properties.name} (${feature.properties.RH[2]} m ü. NN)</h4>
        <ul>
-       <li> ${feature.properties.LT|| "-"} </li>
-       <li>${feature.properties.WG_BOE || "-"}</li> 
-       <li> ${feature.properties.ZEITRAUM || "-"} </li>
-       <li> ${feature.properties.ZEITRAUM || "-"} </li>
+       <li> ${feature.properties.LT|| "keine Angabe"} </li>
+       <li> ${feature.properties.WG_BOE || "keine Angabe"}</li> 
+       <li> ${feature.properties.ZEITRAUM || "keine Angabe"} </li>
+       <li> ${feature.properties.ZEITRAUM || "keine Angabe"} </li>
+       </ul>
        ${feature.properties.date}
         `);
         }
