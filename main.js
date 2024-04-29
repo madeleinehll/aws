@@ -53,10 +53,10 @@ async function showStations(url) {
             layer.bindPopup(`
        <h4>${feature.properties.name} (${feature.properties.RH[2]} m ü. NN)</h4>
        <ul>
-       <li> ${feature.properties.LT|| "keine Angabe"} </li>
-       <li> ${feature.properties.RH || "keine Angabe"}</li> 
-       <li> ${feature.properties.WG || "keine Angabe"} </li>
-       <li> ${feature.properties.HS|| "keine Angabe"} </li>
+       <li> ${feature.properties.LT|| "keine Angabe"} 
+       <li> ${feature.properties.RH || "keine Angabe"} 
+       <li> ${feature.properties.WG || "keine Angabe"}
+       <li> ${feature.properties.HS|| "keine Angabe"} 
        </ul>
        ${feature.properties.date}
         `);
