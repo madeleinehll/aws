@@ -39,8 +39,16 @@ async function showStations(url) {
     let response = await fetch(url);
     let geojson = await response.json();
 
-    // Wetterstationen mit Icons und Popups
-    console.log(geojson);
+    // Wetterstationen mit Icons und Popup 
+    L.geoJSON(geojson, {
+        style: function (feature) {
+            return {
+                color: "#F012BE",
+                weight: 1,
+                opacity: 0.4,
+                fillOpacity: 0.1,
+            };
+        },
         onEachFeature: function (feature, layer) {
             layer.bindPopup(`
        <h4>${feature.properties.name} (${feature.properties.RH[2]} m ü. NN)</h4>
@@ -53,7 +61,7 @@ async function showStations(url) {
        ${feature.properties.date}
         `);
         }
-    .addTo(themaLayer.zones);
+}).addTo(themaLayer.zones);
 
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
