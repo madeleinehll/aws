@@ -46,9 +46,9 @@ async function showStations(url) {
        <h4>${feature.properties.name} (${feature.properties.RH[2]} m ü. NN)</h4>
        <ul>
        <li> ${feature.properties.LT|| "keine Angabe"} </li>
-       <li> ${feature.properties.WG_BOE || "keine Angabe"}</li> 
-       <li> ${feature.properties.ZEITRAUM || "keine Angabe"} </li>
-       <li> ${feature.properties.ZEITRAUM || "keine Angabe"} </li>
+       <li> ${feature.properties.RH || "keine Angabe"}</li> 
+       <li> ${feature.properties.WG || "keine Angabe"} </li>
+       <li> ${feature.properties.HS|| "keine Angabe"} </li>
        </ul>
        ${feature.properties.date}
         `);
