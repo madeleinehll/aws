@@ -57,8 +57,10 @@ footer nav {
     font-weight: bold;
     padding: 0.3em;
     text-shadow:
-    -1px -1px 0 whitesmoke,
-    -1px 1px 0 whitesmoke,
-    1px -1px 0 whitesmoke,
-    1px 1px 0 whitesmoke,
+        -1px -1px 0 whitesmoke,
+        -1px 1px 0 whitesmoke,
+        1px -1px 0 whitesmoke,
+        1px 1px 0 whitesmoke,
+display: inline-block;
+transform: translate(-30%,-50%);
 }
