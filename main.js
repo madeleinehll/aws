@@ -13,7 +13,8 @@ let map = L.map("map", {
 
 // thematische Layer
 let themaLayer = {
-    stations: L.featureGroup().addTo(map)
+    stations: L.featureGroup().addTo(map),
+    temperature: L.featureGroup().addTo(map),
 }
 
 // Hintergrundlayer
@@ -24,7 +25,8 @@ L.control.layers({
     }).addTo(map),
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
-    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery")
+    "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery"),
+    "Temperatur": themaLayer.temperature,
 }, {
     "Wetterstationen": themaLayer.stations
 }).addTo(map);
@@ -34,6 +36,18 @@ L.control.scale({
     imperial: false,
 }).addTo(map);
 
+function showTemperature(geojson) {
+    L.geoJSON(geojson, {
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon",
+                    html: `<span>${feature.properties.LT}</span>`
+                })
+            })
+        }
+    }).addTo(themaLayer.temperature);
+}
 // GeoJSON der Wetterstationen laden
 async function showStations(url) {
     let response = await fetch(url);
@@ -41,27 +55,29 @@ async function showStations(url) {
     // Wetterstationen mit Icons und Popup 
     L.geoJSON(geojson, {
         pointToLayer: function (feature, latlng) {
-          return L.marker(latlng, {
-            icon: L.icon({
-              iconUrl: `icons/wifi.png`,
-              iconAnchor: [16, 37],
-              popupAnchor: [0, -37],
-            }),
-        });
-    },
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: `icons/wifi.png`,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37],
+                }),
+            });
+        },
         onEachFeature: function (feature, layer) {
+            let pointInTime = new Date(feature.properties.date);
+            console.log(pointInTime)
             layer.bindPopup(`
        <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
        <ul>
-       <li> Lufttemperatur (°C): ${feature.properties.LT|| "-"} 
+       <li> Lufttemperatur (°C): ${feature.properties.LT || "-"} 
        <li> Relative Luftfeuchte (%): ${feature.properties.RH || "-"} 
        <li> Windgeschwindigkeit (km/h): ${feature.properties.WG || "-"}
-       <li> Schneehöhe (cm):${feature.properties.HS|| "-"} 
+       <li> Schneehöhe (cm):${feature.properties.HS || "-"} 
        </ul>
-       <span>${feature.properties.date}</span>
+       <span>${pointInTime.toLocaleString()}</span> 
         `);
         }
-}).addTo(themaLayer.stations);
-
+    }).addTo(themaLayer.stations);
+    showTemperature(geojson);
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
