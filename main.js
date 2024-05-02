@@ -38,6 +38,12 @@ L.control.scale({
 
 function showTemperature(geojson) {
     L.geoJSON(geojson, {
+        filter:function (feature){
+            //feature.properties.LT
+            if feature.properties.LT > -50 && feature.properties.LT < 50){
+
+            }
+        },
         pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
                 icon: L.divIcon({
