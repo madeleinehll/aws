@@ -58,7 +58,7 @@ async function showStations(url) {
        <li> Windgeschwindigkeit (km/h): ${feature.properties.WG || "-"}
        <li> Schneehöhe (cm):${feature.properties.HS|| "-"} 
        </ul>
-       ${feature.properties.date}
+       <span>${feature.properties.date}</span>
         `);
         }
 }).addTo(themaLayer.stations);
