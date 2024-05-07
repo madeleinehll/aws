@@ -16,6 +16,7 @@ let themaLayer = {
     stations: L.featureGroup().addTo(map),
     temperature: L.featureGroup().addTo(map),
     wind: L.featureGroup().addTo(map),
+    schnee: L.featureGroup().addTo(map),
 }
 
 // Hintergrundlayer
@@ -31,6 +32,7 @@ L.control.layers({
     "Wetterstationen": themaLayer.stations,
     "Temperatur °C": themaLayer.temperature,
     "Wind km/h": themaLayer.wind,
+    "Schnee cm": themaLayer.schnee,
 }).addTo(map);
 
 // Maßstab
@@ -64,6 +66,25 @@ function showTemperature(geojson) {
             })
         }
     }).addTo(themaLayer.temperature);
+}
+
+function showWind(geojson) {
+    L.geoJSON(geojson, {
+        filter: function(feature) {
+            if (feature.properties.WG > 0 && feature.properties.WG < 250) {
+                return true;
+            }
+        },
+        pointToLayer: function(feature, latlng) {
+            let color = getColor(feature.properties.WG, COLORS.wind);
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon-wind",
+                    html: `<span title="${feature.properties.WG.toFixed(1)} km/h"><i style="transform:rotate(${feature.properties.WR}deg);color:${color}" class="fa-solid fa-circle-arrow-down"></i></span>`
+                })
+            })
+        }
+    }).addTo(themaLayer.wind);
 }
 
 function showWind(geojson) {
