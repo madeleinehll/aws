@@ -33,7 +33,7 @@ L.control.layers({
     "Temperatur °C": themaLayer.temperature,
     "Wind km/h": themaLayer.wind,
     "Schnee cm": themaLayer.snow,
-})
+}).addTo(map)
 
 // Maßstab
 L.control.scale({
