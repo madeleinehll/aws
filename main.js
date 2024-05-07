@@ -26,9 +26,9 @@ L.control.layers({
     "Openstreetmap": L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery"),
-    "Temperatur": themaLayer.temperature,
 }, {
-    "Wetterstationen": themaLayer.stations
+    "Wetterstationen": themaLayer.stations,
+    "Temperatur": themaLayer.temperature.addTo(map),
 }).addTo(map);
 
 // Maßstab
