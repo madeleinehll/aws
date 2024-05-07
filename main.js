@@ -68,7 +68,20 @@ function showTemperature(geojson) {
 
 function showWind(geoJSON){
     L.geoJSON(geojson,{
-
+      filter: function (feature){
+        if (feature.properties.WG > 0 && feature.properties.WG <=250) {
+            return: true; 
+        }
+      },
+      pointToLayer: function (feature, latlng){
+        let color = getColor (feature.properties.WG, COLORS.wind);
+        return L.marker (latlng, {
+            icon: L.divIcon({
+                className: "aws-div-icon-wind",
+                html: `<span title ="${feature.properties.WG.toFixed(1)}km/h"><i style="transform:rotate(${feature.properties.WR}deg);color:${color}">/i></span>`
+            })
+        })
+      }
     })
 }
 
