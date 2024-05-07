@@ -40,8 +40,8 @@ function showTemperature(geojson) {
     L.geoJSON(geojson, {
         filter:function (feature){
             //feature.properties.LT
-            if feature.properties.LT > -50 && feature.properties.LT < 50){
-
+            if (feature.properties.LT > -50 && feature.properties.LT < 50){
+            return true; 
             }
         },
         pointToLayer: function (feature, latlng) {
@@ -53,7 +53,7 @@ function showTemperature(geojson) {
             })
         }
     }).addTo(themaLayer.temperature);
-}
+},
 // GeoJSON der Wetterstationen laden
 async function showStations(url) {
     let response = await fetch(url);
