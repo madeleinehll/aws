@@ -80,17 +80,17 @@ function showWind(geojson) {
             return L.marker(latlng, {
                 icon: L.divIcon({
                     className: "aws-div-icon-wind",
-                    html: `<span title="${feature.properties.WG.toFixed(1)} km/h"><i style="transform:rotate(${feature.properties.WR}deg);color:${color}" class="fa-solid fa-circle-arrow-down"></i></span>`
+                    html: `<span style="background-color:${color};">${feature.properties.SH.toFixed(1)}</span>`
                 })
             })
         }
     }).addTo(themaLayer.wind);
 }
 
-function showWind(geojson) {
+function showSnow(geojson) {
     L.geoJSON(geojson, {
         filter: function(feature) {
-            if (feature.properties.WG > 0 && feature.properties.WG < 250) {
+            if (feature.properties.SH > 0 && feature.properties.SH < 250) {
                 return true;
             }
         },
@@ -99,7 +99,7 @@ function showWind(geojson) {
             return L.marker(latlng, {
                 icon: L.divIcon({
                     className: "aws-div-icon-wind",
-                    html: `<span title="${feature.properties.WG.toFixed(1)} km/h"><i style="transform:rotate(${feature.properties.WR}deg);color:${color}" class="fa-solid fa-circle-arrow-down"></i></span>`
+                    html: `<span title="${feature.properties.SH.toFixed(1)} cm"><i style="transform:rotate(${feature.properties.WR}deg);color:${color}" class="fa-solid fa-circle-arrow-down"></i></span>`
                 })
             })
         }
