@@ -25,7 +25,7 @@ const COLORS = {
         { min: 80, max: 250, color: "#ff3232" },
     ],
 
-    schnee: [
+    snow: [
         { min: 1, max: 10, color: "#ffffb2" },
         { min: 10, max: 25, color: "#b0ffbc" },
         { min: 25, max: 50, color: "#8cffff" },
