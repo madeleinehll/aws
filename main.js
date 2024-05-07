@@ -70,7 +70,7 @@ function showWind(geoJSON){
     L.geoJSON(geojson,{
       filter: function (feature){
         if (feature.properties.WG > 0 && feature.properties.WG <=250) {
-            return: true; 
+            return true; 
         }
       },
       pointToLayer: function (feature, latlng){
@@ -82,7 +82,7 @@ function showWind(geoJSON){
             })
         })
       }
-    })
+    }).addTo(themaLayer.wind);
 }
 
 // GeoJSON der Wetterstationen laden
