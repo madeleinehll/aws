@@ -29,8 +29,8 @@ L.control.layers({
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery"),
 }, {
     "Wetterstationen": themaLayer.stations,
-    "Temperatur": themaLayer.temperature.addTo(map),
-    "Wind": themaLayer.wind.addTo(map),
+    "Temperatur °C": themaLayer.temperature,
+    "Wind km/h": themaLayer.wind,
 }).addTo(map);
 
 // Maßstab
@@ -69,7 +69,7 @@ function showTemperature(geojson) {
 function showWind(geoJSON) {
     L.geoJSON(geojson, {
         filter: function (feature) {
-            if (feature.properties.WG > 0 && feature.properties.WG <= 250) {
+            if (feature.properties.WG > 0 && feature.properties.WG < 250) {
                 return true;
             }
         },
