@@ -63,6 +63,13 @@ function showTemperature(geojson) {
         }
     }).addTo(themaLayer.temperature);
 }
+
+function showWind(geoJSON){
+    L.geoJSON(geojson,{
+
+    })
+}
+
 // GeoJSON der Wetterstationen laden
 async function showStations(url) {
     let response = await fetch(url);
