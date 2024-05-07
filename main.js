@@ -30,6 +30,7 @@ let themaLayer = {
 }, {
     "Wetterstationen": themaLayer.stations,
     "Temperatur": themaLayer.temperature.addTo(map),
+    "Wind": themaLayer.wind.addTo(map),
 }).addTo(map);
 
 // Maßstab
